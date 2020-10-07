@@ -8,7 +8,8 @@ const axios = require('axios');
 router.use('/', express.static(path.join(__dirname, '../public')));
 
 
-// attempting to use proxy middleware to direct internal requests to outside servers
+// ----- GALLERY ------
+// had to remove reg ex and hardcode the id to get images to render
 
 router.use('/bundle.js',
   createProxyMiddleware({
@@ -18,41 +19,24 @@ router.use('/bundle.js',
   })
 );
 
-// router.use('/1',
-//   createProxyMiddleware({
-//     target: '127.0.0.1',
-//     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/' }
-//   })
-// );
-// router.use('/2',
-//   createProxyMiddleware({
-//     target: '127.0.0.1',
-//     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/' }
-//   })
-// );
-// router.use('/3',
-//   createProxyMiddleware({
-//     target: '127.0.0.1',
-//     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/' }
-//   })
-// );
-// router.use('/4',
-//   createProxyMiddleware({
-//     target: '127.0.0.1',
-//     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/' }
-//   })
-// );
-// router.use('/5',
-//   createProxyMiddleware({
-//     target: '127.0.0.1',
-//     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/' }
-//   })
-// );
+router.use('/listing',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:3061/' }
+  })
+);
+
+router.use('/data',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:3061/' }
+  })
+);
+
+
+// ----- reservations ------
 
 router.use('/reservations',
   createProxyMiddleware({
@@ -66,7 +50,7 @@ router.use('/api/listing/',
   createProxyMiddleware({
     target: '127.0.0.1',
     changeOrigin: true,
-    router: function() { return 'http://localhost:3005/' }
+    router: function() { return 'http://localhost:3005' }
   })
 )
 
@@ -74,9 +58,43 @@ router.use('/api/reservations/',
   createProxyMiddleware({
     target: '127.0.0.1',
     changeOrigin: true,
-    router: function() { return 'http://localhost:3005/' }
+    router: function() { return 'http://localhost:3005' }
   })
 )
+
+
+
+// ----- MORE PLACES TO STAY -----
+// had to change main route for this component to static to get it to work
+
+router.use('/static',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:1128/' }
+  })
+)
+
+router.use('/more-data',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:1128/' }
+  })
+)
+
+
+
+// router.get('/more-places', (req, res) => {
+//   axios.get('http://localhost:1128/')
+//     .then(function(response){
+//       res.send(response.data);
+//     })
+//     .catch(function(error){
+//       console.log(error);
+//       res.send(500);
+//     })
+// })
 
 
 // router.get('/api/listing/', (req, res) => {
@@ -118,14 +136,14 @@ router.use('/api/reservations/',
     // .catch();
 
 // request information from API;
-router.get('/data/:id', () => {
-  queryString = `http://localhost:3061/data/id=${id}`;
-  console.log(queryString);
-  res.send(200)
-  // axios.get()
-});
-// update is liked heart;
-// router.patch('/data/update', controller.updateLiked);
+// router.get('/more-data/, () => {
+//   queryString = `http://localhost:3061/data/id=${id}`;
+//   console.log(queryString);
+//   res.send(200)
+//   // axios.get()
+// });
+// // update is liked heart;
+// // router.patch('/data/update', controller.updateLiked);
 
 
 
