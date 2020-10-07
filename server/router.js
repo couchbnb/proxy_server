@@ -10,11 +10,47 @@ router.use('/', express.static(path.join(__dirname, '../public')));
 
 // attempting to use proxy middleware to direct internal requests to outside servers
 
-// router.use('/gallery',
+router.use('/bundle.js',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:3061/listing/:id' }
+  })
+);
+
+// router.use('/1',
 //   createProxyMiddleware({
 //     target: '127.0.0.1',
 //     changeOrigin: true,
-//     router: function() { return 'http://localhost:3061/listing/:id/bundle.js' }
+//     router: function() { return 'http://localhost:3061/' }
+//   })
+// );
+// router.use('/2',
+//   createProxyMiddleware({
+//     target: '127.0.0.1',
+//     changeOrigin: true,
+//     router: function() { return 'http://localhost:3061/' }
+//   })
+// );
+// router.use('/3',
+//   createProxyMiddleware({
+//     target: '127.0.0.1',
+//     changeOrigin: true,
+//     router: function() { return 'http://localhost:3061/' }
+//   })
+// );
+// router.use('/4',
+//   createProxyMiddleware({
+//     target: '127.0.0.1',
+//     changeOrigin: true,
+//     router: function() { return 'http://localhost:3061/' }
+//   })
+// );
+// router.use('/5',
+//   createProxyMiddleware({
+//     target: '127.0.0.1',
+//     changeOrigin: true,
+//     router: function() { return 'http://localhost:3061/' }
 //   })
 // );
 
@@ -33,6 +69,15 @@ router.use('/api/listing/',
     router: function() { return 'http://localhost:3005/' }
   })
 )
+
+router.use('/api/reservations/',
+  createProxyMiddleware({
+    target: '127.0.0.1',
+    changeOrigin: true,
+    router: function() { return 'http://localhost:3005/' }
+  })
+)
+
 
 // router.get('/api/listing/', (req, res) => {
 //   var queryString = `http://localhost:3005/api/listing/?listing_id=${req.query.listing_id}`
@@ -57,6 +102,7 @@ router.use('/api/listing/',
 //     .catch(function(error) {
 //       console.log(error);
 //     })
+// })
     // .then(
     //   axios.get('http://localhost:3061/data/55')
     //     .then(function(results) {
@@ -70,7 +116,6 @@ router.use('/api/listing/',
     //     })
     // )
     // .catch();
-// })
 
 // request information from API;
 router.get('/data/:id', () => {
