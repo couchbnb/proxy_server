@@ -4,7 +4,7 @@
   "description": "serves a single access point by which all property listing page widgets can be accessed (james scolamieri)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
