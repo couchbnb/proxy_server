@@ -75,26 +75,28 @@ router.use('/static',
   })
 )
 
-router.use('/more-data',
-  createProxyMiddleware({
-    target: '127.0.0.1',
-    changeOrigin: true,
-    router: function() { return 'http://localhost:1128/' }
-  })
-)
+// router.use('/more-data',
+//   createProxyMiddleware({
+//     target: '127.0.0.1',
+//     changeOrigin: true,
+//     router: function() { return 'http://localhost:1128/' }
+//   })
+// )
 
 
 
-// router.get('/more-places', (req, res) => {
-//   axios.get('http://localhost:1128/')
-//     .then(function(response){
-//       res.send(response.data);
-//     })
-//     .catch(function(error){
-//       console.log(error);
-//       res.send(500);
-//     })
-// })
+router.get('/place', (req, res) => {
+
+  axios.get(`http://localhost:1128/place?room_id=${req.query.roomid}`)
+    .then(function(response){
+      res.status(200)
+      res.json(response.data);
+    })
+    .catch(function(error){
+      console.log(error);
+      res.send(500);
+    })
+})
 
 
 // router.get('/api/listing/', (req, res) => {

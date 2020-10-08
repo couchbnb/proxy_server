@@ -1,0 +1,15 @@
+.top {
+
+}
+
+.mid {
+  display: flex;
+}
+
+#reservationModule {
+  width: 100%;
+}
+
+.reviews {
+  width: 60%;
+}

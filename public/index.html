@@ -7,16 +7,24 @@
   <title>couchbnb</title>
   <meta name="description" content="couchbnb property listing page">
   <meta name="author" content="j-scola">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
-
-  <div id="appGallery"></div>
-  <div id="reservationModule"></div>
-  <div id="moreplaces"></div>
+  <div class="top">
+    <div id="appGallery"></div>
+  </div>
+  <br>
+  <div class="mid">
+    <!-- <div class="reviews"></div> -->
+    <div id="reservationModule"></div>
+  </div>
+  <div class="low">
+    <div id="moreplaces"></div>
+  </div>
 
 
   <script src="http://localhost:3061/listing/:id/bundle.js"></script>
