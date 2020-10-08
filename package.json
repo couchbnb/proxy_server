@@ -1,0 +1,29 @@
+{
+  "name": "reservations_proxy_server",
+  "version": "1.0.0",
+  "description": "serves a single access point by which all property listing page widgets can be accessed (james scolamieri)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/couchbnb/reservations_proxy_server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/couchbnb/reservations_proxy_server/issues"
+  },
+  "homepage": "https://github.com/couchbnb/reservations_proxy_server#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.5",
+    "nodemon": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
