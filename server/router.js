@@ -85,18 +85,29 @@ router.use('/static',
 
 
 
-router.get('/place', (req, res) => {
+// router.get('/place', (req, res) => {
 
-  axios.get(`http://localhost:1128/place?room_id=${req.query.roomid}`)
-    .then(function(response){
-      res.status(200)
-      res.json(response.data);
+//   axios.get(`http://localhost:1128/place?room_id=${req.query.roomid}`)
+//     .then(function(response){
+//       res.status(200)
+//       res.json(response.data);
+//     })
+//     .catch(function(error){
+//       console.log(error);
+//       res.send(500);
+//     })
+// })
+
+router.get('/place', (req, res) => {
+  const id = req.query.roomid;
+  axios.get(`http://localhost:1128/place?roomid=${id}`)
+    .then((response) => {
+      res.status(200).send(response.data);
     })
-    .catch(function(error){
-      console.log(error);
-      res.send(500);
+    .catch((err) => {
+      console.log(err);
     })
-})
+});
 
 
 // router.get('/api/listing/', (req, res) => {
