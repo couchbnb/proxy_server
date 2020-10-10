@@ -9,7 +9,7 @@ router.use('/', express.static(path.join(__dirname, '../public')));
 
 
 const addresses = {
-  target: '127.0.0.1'
+  target: '127.0.0.1',
   gallery: 'http://3.101.106.19/',
   reservations: 'http://ec2-3-135-212-193.us-east-2.compute.amazonaws.com/',
   morePlaces: 'http://54.183.142.121/'
