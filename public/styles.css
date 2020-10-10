@@ -4,6 +4,7 @@
 
 .mid {
   display: flex;
+  justify-content: center;
 }
 
 #reservationModule {
