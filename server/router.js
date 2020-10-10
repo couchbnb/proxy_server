@@ -7,8 +7,10 @@ const axios = require('axios');
 // serves index as static
 router.use('/', express.static(path.join(__dirname, '../public')));
 
+
 const addresses = {
-  gallery: 'http://localhost.3061/',
+  target: '127.0.0.1'
+  gallery: 'http://3.101.106.19/',
   reservations: 'http://ec2-3-135-212-193.us-east-2.compute.amazonaws.com/',
   morePlaces: 'http://54.183.142.121/'
 };
@@ -27,7 +29,7 @@ const addresses = {
 
 router.use('/listing',
   createProxyMiddleware({
-    target: '127.0.0.1',
+    target: addresses.target,
     changeOrigin: true,
     router: function() { return addresses.gallery }
   })
@@ -35,7 +37,7 @@ router.use('/listing',
 
 router.use('/data',
   createProxyMiddleware({
-    target: '127.0.0.1',
+    target: addresses.target,
     changeOrigin: true,
     router: function() { return addresses.gallery }
   })
@@ -54,7 +56,7 @@ router.use('/data',
 
 router.use('/api/listing/',
   createProxyMiddleware({
-    target: '127.0.0.1',
+    target: addresses.target,
     changeOrigin: true,
     router: function() { return addresses.reservations }
   })
@@ -62,7 +64,7 @@ router.use('/api/listing/',
 
 router.use('/api/reservations/',
   createProxyMiddleware({
-    target: '127.0.0.1',
+    target: addresses.target,
     changeOrigin: true,
     router: function() { return addresses.reservations }
   })
